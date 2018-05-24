@@ -1,0 +1,91 @@
+﻿@using WebSiteBanSach.Models;
+@using PagedList.Mvc;
+@model PagedList.IPagedList<Sach>
+
+@*Css cho trang chủ ở trong thư mục content*@
+<link href="~/Content/TrangChuCss.css" rel="stylesheet" />
+@{
+    Layout = "~/Views/Layout/NguoiDungLayout.cshtml";
+    ViewBag.Title = "Index";
+}
+@section NoiDungBenPhai{
+      <div>
+          NHÀ SÁCH TRỰC TUYẾN BOOKBUY.VN
+          Mua sách online tại nhà sách trực tuyến Bookbuy.vn để được cập nhật nhanh nhất các tựa sách đủ thể loại với mức giảm 15 – 35% cùng nhiều ưu đãi, quà tặng kèm. Qua nhiều năm, không chỉ là địa chỉ tin cậy để bạn mua sách trực tuyến, Bookbuy còn có quà tặng, văn phòng phẩm, vật dụng gia đình,…với chất lượng đảm bảo, chủng loại đa dạng, chế độ bảo hành đầy đủ và giá cả hợp lý từ hàng trăm thương hiệu uy tín trong và ngoài nước. Đặc biệt, bạn có thể chọn những mẫu sổ tay handmade hay nhiều món quà tặng sinh nhật độc đáo chỉ có tại Bookbuy.vn.
+
+          Mua sách online tại Bookbuy, bạn được tận hưởng chính sách hỗ trợ miễn phí đổi trả hàng, giao hàng nhanh – tận nơi – miễn phí*, thanh toán linh hoạt - an toàn, đặc biệt giảm thêm trên giá bán khi sử dụng BBxu giúp bạn mua sách online giá 0đ!
+
+          Chỉ với 3 cú click chuột, chưa bao giờ trải nghiệm mua sách online lại dễ chịu và nhẹ nhàng như vậy. Còn chần chờ gì nữa, đặt mua ngay những tựa sách hay cùng hàng ngàn sản phẩm chất lượng khác tại Bookbuy.vn!
+
+</div> 
+  }
+@*divBody trang index*@
+<h2 style="margin-left:2%;font-weight:normal;color:black">Sách mới xuất bản</h2>
+<hr />
+<div id="divBody" style="background:White; margin-left:77px;">
+    @{int i = 0;}
+    @foreach (var item in Model)
+    {
+        i++;
+        <div id="SanPham">
+          <a href="@Url.Action("XemChiTiet", "Sach", new { @MaSach=item.MaSach })">  <div id="AnhBia"><img class="hieuungdep" src="@Url.Content("~/HinhAnhSP/"+item.AnhBia)" width="100" height="150" /></div></a>
+           <div id="ThongTin">
+               @*Nếu tên sách dài hơn 30 ký tự thì cắt tên sách ra lấy từ ký tự 0 đến ký tự 35*@
+             @if (item.TenSach.Length < 35)
+            {
+                 <div id="TenSach" title="@item.TenSach">@item.TenSach.</div>
+            }
+            else
+            {
+                <div id="TenSach" title="@item.TenSach"  > @item.TenSach.Substring(0,35) ...</div>
+            }
+               @*Tách 3 số 0 sử dụng string.Format("{0:0,0}", tham số)*@
+            <div id="DonGia" style="color:orange"><font  color="Green">Giá:</font> @String.Format("{0:0,0}", item.GiaBan) VNĐ</div>
+            </div>
+            <div id="GioHang">
+                @using (Html.BeginForm("ThemGioHang", "GioHang", new { @iMaSach = item.MaSach, @strURL = Request.Url.ToString() }))
+                {
+                    <input type="submit" style="cursor:pointer" value="Mua hàng &#xf07a;" id="btnGioHang" class="btn btn-primary">
+                }
+            </div>
+        </div>
+        if (i % 3 == 0)
+        { 
+            <div style="clear:both"></div>
+        }
+    }
+   
+</div>
+<div style="clear:both"></div>
+@* Tạo link liên kết các trang*@
+Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/ @Model.PageCount
+<div class="MenuTrang">
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
+</div>
+<style>
+    .MenuTrang li {
+        display:inline;
+    
+    }
+    #AnhBia img {
+        -webkit-transform: scale(0.8); 
+        -moz-transform: scale(0.8); 
+        -o-transform: scale(0.8); 
+        -webkit-transition-duration: 0.5s; 
+        -moz-transition-duration: 0.5s; 
+        -o-transition-duration: 0.5s; 
+        opacity: 1; 
+        margin: 0 10px 5px 0; 
+    }
+        #AnhBia img:hover {
+            -webkit-transform: scale(1.1); /*Webkit: Scale up image to 1.2x original size*/
+            -moz-transform: scale(1.1); /*Mozilla scale version*/
+            -o-transform: scale(1.1); /*Opera scale version*/
+            box-shadow: 0px 0px 30px gray; /*CSS3 shadow: 30px blurred shadow all around image*/
+            -webkit-box-shadow: 0px 0px 30px gray; /*Safari shadow version*/
+            -moz-box-shadow: 0px 0px 30px gray; /*Mozilla shadow version*/
+            opacity: 1;
+        }
+   
+
+</style>

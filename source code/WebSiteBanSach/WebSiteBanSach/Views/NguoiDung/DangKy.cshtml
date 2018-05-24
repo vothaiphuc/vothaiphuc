@@ -1,0 +1,137 @@
+﻿@model WebSiteBanSach.Models.KhachHang
+
+@{
+    ViewBag.Title = "DangKy";
+    Layout = "~/Views/Layout/NguoiDungLayout.cshtml";
+}
+<h4>Đăng ký thông tin </h4>
+<hr />
+    <div class="FORM">
+        @using (Html.BeginForm())
+        {
+           
+            <div class="CON">
+   
+               <div class="LABEL">Họ Tên:</div> 
+                <input type="text" name="txtHoTen" id="txtHoTen" class="TXT" autofocus required /> <br /> <br />
+        
+                <div class="LABEL">Ngày Sinh:</div>
+                <input class="TXT" type="date" name="NgaySinh" id="NgaySinh" required value="1990-01-01" /> <br /> <br /> <br />
+                <div style="height: 30px; line-height: 30px; margin-top: -25px;"class="LABEL">Giới Tính:</div>
+                <div style ="margin-top: -22px;">
+                    <input type="radio" name="checkbox" value="nam" id="nam " checked />Nam
+                    <input type="radio" name="checkbox" value="nu" id="nu" />Nữ
+                </div> <br />
+                <div class="LABEL">Điện Thoại:</div>
+                <input type="number" name="txtDienThoai" id="txtDienThoai" class="TXT"  required /> <br /> <br />
+                <div class="LABEL">Tài Khoản:</div>
+                <input type="text" name="txtTaiKhoan" id="txtTaiKhoan" class="TXT" required /> <br /> <br />
+                <div class="LABEL">Mật Khẩu:</div>
+                <input type="password" name="MatKhau" id="MatKhau" class="TXT" required /> <br /> <br />
+                <div class="LABEL">Xác Nhận Mật Khẩu:</div>
+                <input type="password" name="XacNhanMatKhau" id="XacNhanMatKhau" class="TXT" required /> <br /> <br />
+                <div class="LABEL">Email:</div>
+                <input type="text" name="txtEmail" id="txtEmail" class="TXT" required /> <br /> <br />
+                <div class="LABEL">Địa Chỉ:</div>
+                <input type="text" name="txtDiaChi" id="txtDiaChi" class="TXT" required /> <br /> <br />
+        
+            </div>
+            <input type="submit" name="XacNhan " id=" XacNhan" value="Đăng Ký" onclick="MyFunction()" style="margin-left: 226px; margin-bottom: 20px; width: 80px; height: 40px; border: 4px solid #000;" />
+           
+        }
+    </div>
+
+<style>
+    .LABEL {
+        width: 200px;
+        height: 60px;
+        float: left;
+        line-height: 60px;
+    }
+    .FORM {
+        margin-left: 400px;
+        margin-right:400px;
+        border : 2px solid #000;
+       
+    }
+    h4 {
+        TEXT-ALIGN: center;
+        FONT-SIZE: 30PX;
+    }
+    .CON {
+        padding-left: 40px;
+        padding-top:30px ;
+    }
+    .TXT {
+        width: 200px;
+        margin-left: 20px;     
+        border: 4px solid #000;
+    }
+    #txtHoTen {
+        /*margin-left: 20px;
+        width: 300px;*/
+        border: 4px solid #000;
+    }
+    #NgaySinh {
+        /*margin-left: 20px;*/
+        width: 245px !important;
+        margin-left: -15px;
+        border: 4px solid #000;
+        height: 50px;
+        background-color: #f6f6f6;
+    }
+    #txtDienThoai {
+        /*margin-left: 20px;
+        width: 265px;*/
+        width: 244px;
+        height: 49px;
+        margin-left: -13px;
+        background-color: #f6f6f6 ;
+    }
+    #txtTaiKhoan {
+        /*margin-left: 20px;
+        width: 275px;*/
+        border: 4px solid #000;
+    }
+    #MatKhau {
+        /*margin-left: 20px;
+        width: 275px;*/
+        border: 4px solid #000;
+    }
+    #XacNhanMatKhau {
+        /*margin-left: 20px;
+        width: 200px;*/
+        border: 4px solid #000;
+    }
+    #txtEmail {
+        /*margin-left: 20px;
+        width: 310px;*/
+        border: 4px solid #000;
+    }
+    #txtDiaChi {
+        /*margin-left: 20px;
+        width: 297px;*/
+        border: 4px solid #000;
+    }
+  
+   
+ 
+</style>   
+       
+<script type="text/javascript">
+    function  MyFunction() {
+        var a = document.getElementById("txtHoTen").value;
+        var b = document.getElementById("txtDienThoai").value;
+        var c = document.getElementById("txtTaiKhoan").value;
+        var d = document.getElementById("XacNhanMatKhau").value;
+        var e = document.getElementById("txtEmail").value;
+        var f = document.getElementById("txtDiaChi").value;
+        if (a!="" && b!="" &&c!="" &&d!="" &&e!="" &&f!="")
+        {
+            alert("Đăng ký thành công !");
+        }
+    }
+</script>
+  
+        
+
