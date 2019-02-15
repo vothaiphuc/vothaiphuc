@@ -17,6 +17,7 @@ namespace QUANLYCUAHANG
         {
             InitializeComponent();
         }
+        string tk = "";
         public string quyen;
         public string TK
         {
